@@ -7,7 +7,7 @@
 },
 {
 "id":"C_e",
-"name":"C_e",
+"name":"C (external)",
 "compartment":"e"
 },
 {
@@ -17,7 +17,7 @@
 },
 {
 "id":"N_e",
-"name":"N_e",
+"name":"N (external)",
 "compartment":"e"
 },
 {
@@ -29,12 +29,12 @@
 "reactions":[
 {
 "id":"EX_C",
-"name":"C_e exchange",
+"name":"C (external) exchange",
 "metabolites":{
 "C_e":-1
 },
 "lower_bound":-10,
-"upper_bound":0,
+"upper_bound":1000,
 "gene_reaction_rule":"",
 "annotation":{
 "sbo":"SBO:0000627"
@@ -42,7 +42,7 @@
 },
 {
 "id":"EX_N",
-"name":"N_e exchange",
+"name":"N (external) exchange",
 "metabolites":{
 "N_e":-1
 },
@@ -73,8 +73,8 @@
 "C_c":1,
 "C_e":-1
 },
-"lower_bound":0,
-"upper_bound":10,
+"lower_bound":0.0,
+"upper_bound":1000.0,
 "gene_reaction_rule":""
 },
 {
@@ -84,8 +84,8 @@
 "N_c":1,
 "N_e":-1
 },
-"lower_bound":0,
-"upper_bound":1000,
+"lower_bound":0.0,
+"upper_bound":1000.0,
 "gene_reaction_rule":""
 },
 {
@@ -96,8 +96,8 @@
 "C_c":-10,
 "N_c":-1
 },
-"lower_bound":0,
-"upper_bound":1000,
+"lower_bound":0.0,
+"upper_bound":1000.0,
 "gene_reaction_rule":"",
 "objective_coefficient":1.0
 }

@@ -9,8 +9,8 @@ n_met = cobra.Metabolite("N_c", name="N", compartment="c")
 biomass_met = cobra.Metabolite("BIOMASS", name="BIOMASS", compartment="c")
 
 # Create external metabolites (e compartment)
-c_met_e = cobra.Metabolite("C_e", name="C_e", compartment="e")
-n_met_e = cobra.Metabolite("N_e", name="N_e", compartment="e")
+c_met_e = cobra.Metabolite("C_e", name="C (external)", compartment="e")
+n_met_e = cobra.Metabolite("N_e", name="N (external)", compartment="e")
 
 # Add metabolites to model
 model.add_metabolites(
@@ -24,21 +24,21 @@ model.add_metabolites(
 )
 
 # Add boundary reactions
-model.add_boundary(c_met_e, type="exchange", reaction_id="EX_C", lb=-10, ub=0)
+model.add_boundary(c_met_e, type="exchange", reaction_id="EX_C", lb=-10, ub=1000)
 model.add_boundary(n_met_e, type="exchange", reaction_id="EX_N", lb=-1000, ub=1000)
 model.add_boundary(biomass_met, type="demand", reaction_id="EX_BIOMASS", lb=0, ub=1000)
 
 # Create internal reactions
 # Glucose transport
-v_c = cobra.Reaction("V_C", name="C uptake", lower_bound=0, upper_bound=10)
+v_c = cobra.Reaction("V_C", name="C uptake")
 v_c.add_metabolites({c_met_e: -1, c_met: 1})
 
 # Nitrogen transport
-v_n = cobra.Reaction("V_N", name="N uptake", lower_bound=0, upper_bound=1000)
+v_n = cobra.Reaction("V_N", name="N uptake")
 v_n.add_metabolites({n_met_e: -1, n_met: 1})
 
 # Biomass production
-v_biomass = cobra.Reaction("V_BIOMASS", name="Biomass production", lower_bound=0, upper_bound=1000)
+v_biomass = cobra.Reaction("V_BIOMASS", name="Biomass production")
 v_biomass.add_metabolites({c_met: -10, n_met: -1, biomass_met: 1})
 
 # Add reactions to model
